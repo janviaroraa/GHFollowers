@@ -1,0 +1,39 @@
+//
+//  Notes.txt
+//  GHFollowers
+//
+//  Created by Janvi Arora on 09/08/24.
+//
+
+/*
+
+ Q: Why Apple split up AppDelegate & SceneDelegate?
+
+ Answer:
+ SceneDelegate: Introduced in iOS 13.0
+
+ It allows for multi-window operations. Refer to the screenshots attached in assest
+ folder. It represents two instances of same app, i.e. two scenes of same app being shown
+ at once.
+
+ Before iOS 13.0, we could have 2 instances side by side but they should be of
+ different apps, but now we can have instances of same apps at once (side by side), & the
+ SceneDelegate is what that allows this.
+
+ Earlier our app used to have a window, but now it has scenes, which could be multiple.
+ So, our app could have one AppDelegate, but multiple scenes. If we'll have 2 scenes up,
+ then each scene will have their own sceneWillEnterForeground, sceneDidEnterBackground etc
+ functions, to refer which scene was it.
+
+ So, this means you are allowed to have multiple scenes of your app at once on iPad.
+
+ This is called a multi-window paradigm.
+
+ var window: UIWindow? -
+ This used to be in AppDelegate earlier, but now it's in SceneDelegate & each scene has
+ its own UIWindow. This means that the SceneDelegate is responsible for configuring and
+ managing the UI for a particular scene, while the AppDelegate still handles global app
+ lifecycle events like app launch or termination. So, the window property is now in
+ SceneDelegate because iOS apps can manage multiple scenes (windows) simultaneously.
+
+ */
