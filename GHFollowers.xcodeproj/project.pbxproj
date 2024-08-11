@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		12721BC42C66519900E56E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC32C66519900E56E53 /* AppDelegate.swift */; };
 		12721BC62C66519900E56E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC52C66519900E56E53 /* SceneDelegate.swift */; };
-		12721BC82C66519900E56E53 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC72C66519900E56E53 /* ViewController.swift */; };
+		12721BC82C66519900E56E53 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC72C66519900E56E53 /* SearchViewController.swift */; };
 		12721BCE2C66519900E56E53 /* GHFollowers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 12721BCC2C66519900E56E53 /* GHFollowers.xcdatamodeld */; };
 		12721BD02C66519B00E56E53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12721BCF2C66519B00E56E53 /* Assets.xcassets */; };
 		12721BD32C66519B00E56E53 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 12721BD22C66519B00E56E53 /* Base */; };
@@ -17,6 +17,8 @@
 		12721BE82C66519E00E56E53 /* GHFollowersUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BE72C66519E00E56E53 /* GHFollowersUITests.swift */; };
 		12721BEA2C66519E00E56E53 /* GHFollowersUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BE92C66519E00E56E53 /* GHFollowersUITestsLaunchTests.swift */; };
 		12721BF92C68A4AB00E56E53 /* Notes.txt in Sources */ = {isa = PBXBuildFile; fileRef = 12721BF82C68A4AB00E56E53 /* Notes.txt */; };
+		12721BFD2C68B33100E56E53 /* FavouritesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BFC2C68B33100E56E53 /* FavouritesListViewController.swift */; };
+		12721C002C68B43700E56E53 /* GHTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BFF2C68B43700E56E53 /* GHTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +42,7 @@
 		12721BC02C66519900E56E53 /* GHFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12721BC32C66519900E56E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12721BC52C66519900E56E53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		12721BC72C66519900E56E53 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		12721BC72C66519900E56E53 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		12721BCD2C66519900E56E53 /* GHFollowers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GHFollowers.xcdatamodel; sourceTree = "<group>"; };
 		12721BCF2C66519B00E56E53 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12721BD22C66519B00E56E53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +53,8 @@
 		12721BE72C66519E00E56E53 /* GHFollowersUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHFollowersUITests.swift; sourceTree = "<group>"; };
 		12721BE92C66519E00E56E53 /* GHFollowersUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHFollowersUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		12721BF82C68A4AB00E56E53 /* Notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes.txt; sourceTree = "<group>"; };
+		12721BFC2C68B33100E56E53 /* FavouritesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListViewController.swift; sourceTree = "<group>"; };
+		12721BFF2C68B43700E56E53 /* GHTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GHTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,9 @@
 				12721BF72C68A49C00E56E53 /* Notes */,
 				12721BF62C68A41500E56E53 /* Resources */,
 				12721BC22C66519900E56E53 /* GHFollowers */,
+				12721BFE2C68B36200E56E53 /* TabBar */,
+				12721BFA2C68B2E700E56E53 /* Search */,
+				12721BFB2C68B2ED00E56E53 /* Favourites */,
 				12721BDC2C66519E00E56E53 /* GHFollowersTests */,
 				12721BE62C66519E00E56E53 /* GHFollowersUITests */,
 				12721BC12C66519900E56E53 /* Products */,
@@ -103,7 +110,6 @@
 		12721BC22C66519900E56E53 /* GHFollowers */ = {
 			isa = PBXGroup;
 			children = (
-				12721BC72C66519900E56E53 /* ViewController.swift */,
 				12721BD42C66519B00E56E53 /* Info.plist */,
 				12721BCC2C66519900E56E53 /* GHFollowers.xcdatamodeld */,
 			);
@@ -144,6 +150,30 @@
 				12721BF82C68A4AB00E56E53 /* Notes.txt */,
 			);
 			path = Notes;
+			sourceTree = "<group>";
+		};
+		12721BFA2C68B2E700E56E53 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				12721BC72C66519900E56E53 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		12721BFB2C68B2ED00E56E53 /* Favourites */ = {
+			isa = PBXGroup;
+			children = (
+				12721BFC2C68B33100E56E53 /* FavouritesListViewController.swift */,
+			);
+			path = Favourites;
+			sourceTree = "<group>";
+		};
+		12721BFE2C68B36200E56E53 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				12721BFF2C68B43700E56E53 /* GHTabBarController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,10 +306,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12721BFD2C68B33100E56E53 /* FavouritesListViewController.swift in Sources */,
 				12721BCE2C66519900E56E53 /* GHFollowers.xcdatamodeld in Sources */,
 				12721BF92C68A4AB00E56E53 /* Notes.txt in Sources */,
-				12721BC82C66519900E56E53 /* ViewController.swift in Sources */,
+				12721BC82C66519900E56E53 /* SearchViewController.swift in Sources */,
 				12721BC42C66519900E56E53 /* AppDelegate.swift in Sources */,
+				12721C002C68B43700E56E53 /* GHTabBarController.swift in Sources */,
 				12721BC62C66519900E56E53 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
