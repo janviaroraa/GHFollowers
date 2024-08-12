@@ -1,5 +1,5 @@
 //
-//  GHTabBarController.swift
+//  GFTabBarController.swift
 //  GHFollowers
 //
 //  Created by Janvi Arora on 11/08/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GHTabBarController: UITabBarController {
+class GFTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +23,8 @@ class GHTabBarController: UITabBarController {
         searchVC.navigationItem.largeTitleDisplayMode = .automatic
         favouritesVC.navigationItem.largeTitleDisplayMode = .automatic
 
-        searchVC.title = "Characters"
-        favouritesVC.title = "Location"
+        searchVC.title = "Search"
+        favouritesVC.title = "Favourites"
 
         let nav1 = UINavigationController(rootViewController: searchVC)
         let nav2 = UINavigationController(rootViewController: favouritesVC)
