@@ -13,6 +13,7 @@ class GFTabBarController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         UITabBar.appearance().tintColor = .systemGreen
+        UINavigationBar.appearance().tintColor = .systemGreen
         setupTabs()
     }
 

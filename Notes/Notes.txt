@@ -5,7 +5,7 @@
 //  Created by Janvi Arora on 09/08/24.
 //
 
-/*
+---------------------------------------------------------------------------------
 
  Q: Why Apple split up AppDelegate & SceneDelegate?
 
@@ -36,4 +36,20 @@
  lifecycle events like app launch or termination. So, the window property is now in
  SceneDelegate because iOS apps can manage multiple scenes (windows) simultaneously.
 
- */
+---------------------------------------------------------------------------------
+
+ A delegate just sits back and listens. & once it is listening on something (e.g. a vc), it's going to say like - "when this action happens, I'll act on it."
+
+ Example:
+ In our case, action is tapping the 'Go' button on keyboard.
+ Our delegate will wait for that button to get clicked, and then the vc will take an action
+
+---------------------------------------------------------------------------------
+
+ A guard statement is like a 'Line in the sand', which means a point beyond which code will not be executed.
+
+---------------------------------------------------------------------------------
+
+For closures that have a very short lifetime, like those in UIView.animate or DispatchQueue.async, the risk of creating a strong reference cycle is minimal. The system itself ensures that the closure doesn't outlive the context where it's executed.
+
+---------------------------------------------------------------------------------

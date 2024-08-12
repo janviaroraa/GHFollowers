@@ -8,23 +8,19 @@
 import UIKit
 
 class GFButton: UIButton {
-    
-    override init(frame: CGRect) {
-        // In order to give the default frame, we use super.init(frame: )
-        // This means we are calling the parent initialization
-        // i.e. we are building our GFButton on top of UIButton.
-        super.init(frame: frame)
-
-        // This says to use AutoLayout when doing UI stuff programatically.
-        translatesAutoresizingMaskIntoConstraints = false
-
-        configure()
-    }
 
     init(backgroundColor: UIColor, title: String) {
         super.init(frame: .zero)
         self.backgroundColor = backgroundColor
         setTitle(title, for: .normal)
+        configure()
+    }
+
+    override init(frame: CGRect) {
+        // In order to give the default frame, we use super.init(frame: )
+        // This means we are calling the parent initialization
+        // i.e. we are building our GFButton on top of UIButton.
+        super.init(frame: frame)
         configure()
     }
 
@@ -38,5 +34,8 @@ class GFButton: UIButton {
         layer.cornerRadius = 10
         titleLabel?.textColor = .white
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
+
+        // This says to use AutoLayout when doing UI stuff programatically.
+        translatesAutoresizingMaskIntoConstraints = false
     }
 }

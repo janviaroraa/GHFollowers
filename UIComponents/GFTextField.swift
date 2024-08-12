@@ -37,5 +37,7 @@ class GFTextField: UITextField {
         minimumFontSize = 12
 
         autocorrectionType = .no
+        keyboardType = .default
+        returnKeyType = .go
     }
 }
