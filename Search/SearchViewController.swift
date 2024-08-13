@@ -36,9 +36,10 @@ class SearchViewController: UIViewController {
 
     // We want to make isNavigationBarHidden false in viewWillAppear instead of viewDidLoad because we want navigation bar to be hidden each time our view appears. viewDidLoad only gets called the first time our view gets loaded
     // If we make isNavigationBarHidden false in viewDidLoad, then it would have worked fine for the first time,a nd let's say we navigate to another screen, but when we pop that screen, & navigate to SearchViewController again, navigation bar won't be hidden because navigation bar would have been there on the next screen or vc.
+    // Earlier, isNavigationBarHidden was used but then it was found that during transition from SearchVC to FollowersListVC and navigating back half way disappears the nav bar (attached an image in assets for reference). So, make the navigation transition smoother we use setNavigationBarHidden func.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     private func addViews() {
@@ -77,7 +78,11 @@ class SearchViewController: UIViewController {
     @objc
     private func navigateToFollowersVC() {
         guard !isUsernameEmpty else {
-            presentAlert(title: "Empty Username!", message: "Please enter a username. We need to know whose followers to look for.", buttonTitle: "OK")
+            presentAlert(
+                title: "Empty Username!",
+                message: "Please enter a username. We need to know whose followers to look for.",
+                buttonTitle: "OK"
+            )
             return
         }
         let vc = FollowersListViewController()
