@@ -5,7 +5,11 @@
 //  Created by Janvi Arora on 09/08/24.
 //
 
----------------------------------------------------------------------------------
+=================================================================================
+
+NOTE: Some images are added in assets wrt the below notes.
+
+=================================================================================
 
  Q: Why Apple split up AppDelegate & SceneDelegate?
 
@@ -56,5 +60,15 @@ For closures that have a very short lifetime, like those in UIView.animate or Di
 
 In termial, we can write below line to get the response of any URL:
 'curl https://someURL'
+
+---------------------------------------------------------------------------------
+
+URLSession.shared.dataTask(with: url) { data, response, error in
+
+}.resume()
+
+Here, error represents that network call didn't even take place, maybe due to poor internet connection or something.
+
+If there will be 404 or some other error, then it indicates a server error. This will come in response.
 
 ---------------------------------------------------------------------------------
