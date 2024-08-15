@@ -32,7 +32,7 @@ class GFButton: UIButton {
 
     private func configure() {
         layer.cornerRadius = 10
-        titleLabel?.textColor = .white
+        setTitleColor(.white, for: .normal)
         titleLabel?.font = UIFont.preferredFont(forTextStyle: .headline)
 
         // This says to use AutoLayout when doing UI stuff programatically.

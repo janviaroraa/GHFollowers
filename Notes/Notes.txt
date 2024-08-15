@@ -72,3 +72,32 @@ Here, error represents that network call didn't even take place, maybe due to po
 If there will be 404 or some other error, then it indicates a server error. This will come in response.
 
 ---------------------------------------------------------------------------------
+
+Associated Values: You declare the type after each case. Each case can have a different type.
+
+enum Barcode {
+    case upc(Int, Int, Int, Int)
+    case qrCode(String)
+}
+
+Usage:
+
+var productBarCode: Barcode
+productBarCode = .upc(10, 20, 5516, 2)
+productBarCode = .qrCode("abcdefg")
+
+---------------------------------------------------------------------------------
+
+Raw Values: These are pre-populated values when you first define the enum in your code. All the cases conform to one type.
+
+enum AsciiControlCharacters: Character {
+    case tab = "\t"
+    case lineBreak = "\n"
+}
+
+Usage:
+
+var asciiChar: AsciiControlCharacters
+asciiChar = .tab
+
+---------------------------------------------------------------------------------

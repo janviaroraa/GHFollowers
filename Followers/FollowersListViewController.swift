@@ -24,14 +24,19 @@ class FollowersListViewController: UIViewController {
 
     private func getFollowers() {
         guard let username else { return }
-        NetworkManager.shared.getFollowers(for: username, pageNumber: 1) { [weak self] followers, errorMessage in
-            guard let followers else {
+        NetworkManager.shared.getFollowers(for: username, pageNumber: 1) { [weak self] result in
+            switch result {
+            case .success(let followers):
+                for follower in followers {
+                    print(follower.login)
+                }
+            case .failure(let error):
                 self?.presentAlert(
                     title: "Something went wrong!",
-                    message: errorMessage ?? "Default Message",
+                    message: error.rawValue,
                     buttonTitle: "OK"
                 )
-                return
+                break
             }
         }
     }
