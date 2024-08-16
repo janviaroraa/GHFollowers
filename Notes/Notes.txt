@@ -101,3 +101,15 @@ var asciiChar: AsciiControlCharacters
 asciiChar = .tab
 
 ---------------------------------------------------------------------------------
+
+Diffable Data Source: Best for dynamic, complex data with frequent updates, multiple sections, and where automatic animations are desired.
+
+Simple Data Source: Best for static or minimally changing data, when you need manual control, or in legacy/older projects.
+
+---------------------------------------------------------------------------------
+
+UICollectionViewDiffableDataSource will take only Hashables in it
+
+* Enums are by default Hashable
+
+---------------------------------------------------------------------------------
