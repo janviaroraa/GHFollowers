@@ -5,7 +5,7 @@
 //  Created by Janvi Arora on 13/08/24.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
 
@@ -13,6 +13,7 @@ class NetworkManager {
 
     let baseURL = "https://api.github.com/users/"
     let perPageFollowersCount = 100
+    var cache = NSCache<NSString, UIImage>()
 
     private init() { }
 

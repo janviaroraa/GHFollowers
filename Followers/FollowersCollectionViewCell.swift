@@ -48,6 +48,6 @@ class FollowersCollectionViewCell: UICollectionViewCell {
 
     func configure(follower: Follower) {
         self.usernameLabel.text = follower.login
-//        self.avatarImageView.image = UIImage(named: follower.avatarUrl ?? "avatar-placeholder")
+        self.avatarImageView.downloadImage(from: follower.avatarUrl)
     }
 }
