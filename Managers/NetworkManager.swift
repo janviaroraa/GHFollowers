@@ -12,7 +12,7 @@ class NetworkManager {
     static let shared = NetworkManager()
 
     let baseURL = "https://api.github.com/users/"
-    let perPageFollowersCount = 100
+    let perPageFollowersCount = 99
     var cache = NSCache<NSString, UIImage>()
 
     private init() { }

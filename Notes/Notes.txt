@@ -110,6 +110,20 @@ Simple Data Source: Best for static or minimally changing data, when you need ma
 
 UICollectionViewDiffableDataSource will take only Hashables in it
 
-* Enums are by default Hashable
+NOTE: Enums are by default Hashable
+
+---------------------------------------------------------------------------------
+
+Pagination:
+
+1. Detect when we are at the bottom of scroll view.
+2. Check if they have more followers
+3. Bring in next set of followers
+
+NOTE: UICollectionViewDelegate conforms to UIScrollViewDelegate, so we don't have to separately conform to UIScrollViewDelegate, anytime we use collection view or table view.
+
+---------------------------------------------------------------------------------
+
+NOTE: Avoid doing pre-mature optimization.
 
 ---------------------------------------------------------------------------------
