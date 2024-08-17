@@ -15,6 +15,7 @@
 		126AE8EC2C6E0B0F001A8565 /* FollowersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE8EB2C6E0B0F001A8565 /* FollowersCollectionViewCell.swift */; };
 		126AE8EE2C6E0C1A001A8565 /* GFAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE8ED2C6E0C1A001A8565 /* GFAvatarImageView.swift */; };
 		126AE90A2C6F3D66001A8565 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9092C6F3D66001A8565 /* UIHelper.swift */; };
+		126AE90C2C6F9980001A8565 /* GFEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE90B2C6F9980001A8565 /* GFEmptyStateView.swift */; };
 		12721BC42C66519900E56E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC32C66519900E56E53 /* AppDelegate.swift */; };
 		12721BC62C66519900E56E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC52C66519900E56E53 /* SceneDelegate.swift */; };
 		12721BC82C66519900E56E53 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC72C66519900E56E53 /* SearchViewController.swift */; };
@@ -63,6 +64,7 @@
 		126AE8EB2C6E0B0F001A8565 /* FollowersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersCollectionViewCell.swift; sourceTree = "<group>"; };
 		126AE8ED2C6E0C1A001A8565 /* GFAvatarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFAvatarImageView.swift; sourceTree = "<group>"; };
 		126AE9092C6F3D66001A8565 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		126AE90B2C6F9980001A8565 /* GFEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFEmptyStateView.swift; sourceTree = "<group>"; };
 		12721BC02C66519900E56E53 /* GHFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12721BC32C66519900E56E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12721BC52C66519900E56E53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,15 +141,25 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		126AE90D2C6F99DA001A8565 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				126AE8ED2C6E0C1A001A8565 /* GFAvatarImageView.swift */,
+				126AE90B2C6F9980001A8565 /* GFEmptyStateView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
 		12721BB72C66519900E56E53 = {
 			isa = PBXGroup;
 			children = (
+				12721BF62C68A41500E56E53 /* Resources */,
+				12721BF72C68A49C00E56E53 /* Notes */,
 				126AE8E82C6DDC10001A8565 /* Utilities */,
 				126AE8DA2C6B4751001A8565 /* Managers */,
 				12721C062C69EBC600E56E53 /* Extensions */,
 				12721C012C69E01800E56E53 /* UIComponents */,
-				12721BF72C68A49C00E56E53 /* Notes */,
-				12721BF62C68A41500E56E53 /* Resources */,
+				126AE90D2C6F99DA001A8565 /* CustomViews */,
 				12721BC22C66519900E56E53 /* GHFollowers */,
 				12721BFE2C68B36200E56E53 /* TabBar */,
 				12721C102C6A03DB00E56E53 /* Alert */,
@@ -248,7 +260,6 @@
 				12721C042C69E6B800E56E53 /* GFTextField.swift */,
 				12721C0C2C6A01DC00E56E53 /* GFTitleLabel.swift */,
 				12721C0E2C6A01EE00E56E53 /* GFBodyLabel.swift */,
-				126AE8ED2C6E0C1A001A8565 /* GFAvatarImageView.swift */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -419,6 +430,7 @@
 				12721BFD2C68B33100E56E53 /* FavouritesListViewController.swift in Sources */,
 				12721BCE2C66519900E56E53 /* GHFollowers.xcdatamodeld in Sources */,
 				12721C082C69EBD500E56E53 /* UIView+Ext.swift in Sources */,
+				126AE90C2C6F9980001A8565 /* GFEmptyStateView.swift in Sources */,
 				12721C0B2C69F49C00E56E53 /* FollowersListViewController.swift in Sources */,
 				12721BF92C68A4AB00E56E53 /* Notes.txt in Sources */,
 				12721BC82C66519900E56E53 /* SearchViewController.swift in Sources */,

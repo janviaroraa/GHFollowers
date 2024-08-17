@@ -127,3 +127,22 @@ NOTE: UICollectionViewDelegate conforms to UIScrollViewDelegate, so we don't hav
 NOTE: Avoid doing pre-mature optimization.
 
 ---------------------------------------------------------------------------------
+
+Question: There's a language that goes from right to left... so will constraints work same for them?
+
+Answer: Yes, because as long as we use leadingAnchor & trailingAnchor, UI will automatically adjust itself whenever it gets flipped.
+
+Using `leadingAnchor` and `trailingAnchor` instead of `leftAnchor` and `rightAnchor` in Auto Layout is generally recommended for the following reasons:
+
+1. Bidirectional Text Support:
+   - `leadingAnchor` and `trailingAnchor` are more adaptable to different writing directions. In languages that are read from left to right (like English), `leadingAnchor` corresponds to `leftAnchor`, and `trailingAnchor` corresponds to `rightAnchor`. However, in languages that are read from right to left (like Arabic or Hebrew), the roles are reversed: `leadingAnchor` corresponds to `rightAnchor`, and `trailingAnchor` corresponds to `leftAnchor`. Using `leadingAnchor` and `trailingAnchor` ensures your layout will be correctly mirrored for languages with different writing directions.
+
+2. Future-Proofing:
+   - By using `leadingAnchor` and `trailingAnchor`, your code is more likely to work correctly with any new languages or text direction changes that might be supported in future versions of iOS.
+
+3. Best Practice:
+   - It's considered best practice to use `leadingAnchor` and `trailingAnchor` because it aligns with Apple's guidelines and ensures that your app is internationalization-friendly.
+
+In summary, `leadingAnchor` and `trailingAnchor` provide flexibility and support for bidirectional languages, making them the preferred choice for Auto Layout constraints.
+
+---------------------------------------------------------------------------------

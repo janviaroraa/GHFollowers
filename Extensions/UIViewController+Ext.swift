@@ -25,6 +25,19 @@ extension UIViewController {
         }
     }
 
+    func showEmptyState(with message: String, in view: UIView?) {
+        DispatchQueue.main.async {
+            guard let view, view.bounds.size != .zero else {
+                print("Error: view's bounds are zero. Cannot display empty state.")
+                return
+            }
+
+            let emptyView = GFEmptyStateView(message: message)
+            emptyView.frame = view.bounds
+            view.addSubview(emptyView)
+        }
+    }
+
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
 
