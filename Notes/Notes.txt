@@ -146,3 +146,7 @@ Using `leadingAnchor` and `trailingAnchor` instead of `leftAnchor` and `rightAnc
 In summary, `leadingAnchor` and `trailingAnchor` provide flexibility and support for bidirectional languages, making them the preferred choice for Auto Layout constraints.
 
 ---------------------------------------------------------------------------------
+
+NOTE: Always include a button to dismiss the modal presentation sheet, maybe a done or cancel button. Including a button ensures that the modal view is accessible to assistive technologies (e.g. voiceover) & provides an alternative to dismissal gestures.
+
+---------------------------------------------------------------------------------

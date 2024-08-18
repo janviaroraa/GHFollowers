@@ -17,8 +17,10 @@ class FollowersListViewController: UIViewController {
     var username: String? = nil
     private var page = 1
     private var hasMoreFollowers = true
+    private var isSearching = false
 
     private var followers = [Follower]()
+    private var filteredFollowers = [Follower]()
     private var dataSource: UICollectionViewDiffableDataSource<Section, Follower>?
 
     private lazy var followersCollectionView: UICollectionView = {
@@ -32,9 +34,8 @@ class FollowersListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        configureSearchBar()
         getFollowers(username: username ?? "", page: page)
-        addView()
-        layoutConstraints()
         configureDataSource()
     }
 
@@ -56,6 +57,23 @@ class FollowersListViewController: UIViewController {
         ])
     }
 
+    private func configureSearchBar() {
+        let searchController = UISearchController()
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+
+        // Default value = false
+        // If it's turned to false, then our background won't get faded and will remain same.
+        // Else it makes the background a little greyish when we tap on search bar if turned true.
+        searchController.obscuresBackgroundDuringPresentation = false
+
+        searchController.searchBar.placeholder = "Find a follower..."
+        navigationItem.searchController = searchController
+        view.layoutSubviews()
+        addView()
+        layoutConstraints()
+    }
+
     private func getFollowers(username: String, page: Int) {
         showLoadingView()
         
@@ -75,7 +93,7 @@ class FollowersListViewController: UIViewController {
                     return
                 }
 
-                self?.updateData()
+                self?.updateData(with: followers)
             case .failure(let error):
                 self?.presentAlert(
                     title: "Something went wrong!",
@@ -94,7 +112,7 @@ class FollowersListViewController: UIViewController {
         })
     }
 
-    private func updateData() {
+    private func updateData(with followers: [Follower]) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Follower>()
         snapshot.appendSections([.main])
         snapshot.appendItems(followers)
@@ -110,6 +128,13 @@ extension FollowersListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
+
+        let selectedFollower = isSearching ? filteredFollowers[indexPath.row] : followers[indexPath.row]
+
+        // To get the default navigation items on UserInfoViewController's nav bar because we are presenting it modally
+        let vc = UserInfoViewController(follower: selectedFollower)
+        let navigationController = UINavigationController(rootViewController: vc)
+        present(navigationController, animated: true)
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -123,5 +148,30 @@ extension FollowersListViewController: UICollectionViewDelegate {
             page += 1
             getFollowers(username: username, page: page)
         }
+    }
+}
+
+extension FollowersListViewController: UISearchResultsUpdating {
+
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text,
+              !searchText.isEmpty else {
+            updateData(with: followers)
+            return
+        }
+        isSearching = true
+        filteredFollowers = followers.filter {
+            $0.login?.lowercased().contains(searchText.lowercased()) ?? false
+        }
+        updateData(with: filteredFollowers)
+    }
+}
+
+extension FollowersListViewController: UISearchBarDelegate {
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        updateData(with: followers)
+        followersCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
     }
 }
