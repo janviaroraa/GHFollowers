@@ -133,6 +133,7 @@ extension FollowersListViewController: UICollectionViewDelegate {
 
         // To get the default navigation items on UserInfoViewController's nav bar because we are presenting it modally
         let vc = UserInfoViewController(follower: selectedFollower)
+        vc.delegate = self
         let navigationController = UINavigationController(rootViewController: vc)
         present(navigationController, animated: true)
     }
@@ -173,5 +174,15 @@ extension FollowersListViewController: UISearchBarDelegate {
         isSearching = false
         updateData(with: followers)
         followersCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+    }
+}
+
+extension FollowersListViewController: UserInfoDelegate {
+
+    func updateFollowers(for username: String?) {
+        guard let username else { return }
+        title = username
+        getFollowers(username: username, page: 1)
+        followersCollectionView.reloadData()
     }
 }

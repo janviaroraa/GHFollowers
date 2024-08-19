@@ -38,4 +38,9 @@ class GFButton: UIButton {
         // This says to use AutoLayout when doing UI stuff programatically.
         translatesAutoresizingMaskIntoConstraints = false
     }
+
+    func set(backgroundColor: UIColor, title: String) {
+        self.backgroundColor = backgroundColor
+        setTitle(title, for: .normal)
+    }
 }

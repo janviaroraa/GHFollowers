@@ -150,3 +150,17 @@ In summary, `leadingAnchor` and `trailingAnchor` provide flexibility and support
 NOTE: Always include a button to dismiss the modal presentation sheet, maybe a done or cancel button. Including a button ensures that the modal view is accessible to assistive technologies (e.g. voiceover) & provides an alternative to dismissal gestures.
 
 ---------------------------------------------------------------------------------
+
+Question: Why are we using child VCs instead of views for UserInfo Screen?
+
+Answer: Advantages of using child VCs instead of views for UserInfo Screen:
+
+    1. Access to all lifecycle methods (viewWillAppear, etc... ). So, if your UI is very dynamic and user is coming in and out, then this can be very helpful.
+    2. VCs are very `self contained`. Not only they can present the UI, but they can also have the logic to derive the UI in and out of itself.
+    3. Flexible content because you can get navigations.
+
+---------------------------------------------------------------------------------
+
+Common examples for SFSafariViewController: Privacy & Policy, Terms & Conditions, etc...
+
+---------------------------------------------------------------------------------
