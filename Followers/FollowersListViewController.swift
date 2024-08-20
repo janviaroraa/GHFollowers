@@ -35,6 +35,7 @@ class FollowersListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureSearchBar()
+        configureNavBar()
         getFollowers(username: username ?? "", page: page)
         configureDataSource()
     }
@@ -42,6 +43,11 @@ class FollowersListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+
+    private func configureNavBar() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = addButton
     }
 
     private func addView() {
@@ -78,7 +84,7 @@ class FollowersListViewController: UIViewController {
         showLoadingView()
         
         NetworkManager.shared.getFollowers(for: username, pageNumber: page) { [weak self] result in
-            self?.hideLoadingView()
+            self?.dismissLoadingView()
             switch result {
             case .success(let followers):
                 if followers.count < 99 {
@@ -119,6 +125,50 @@ class FollowersListViewController: UIViewController {
 
         DispatchQueue.main.async {
             self.dataSource?.apply(snapshot, animatingDifferences: true)
+        }
+    }
+
+    @objc
+    private func addButtonTapped() {
+        guard let username else {
+            presentAlert(
+                title: "Something went wrong!",
+                message: "There's some trouble accessing this github account. Please try again.",
+                buttonTitle: "OK"
+            )
+            return
+        }
+
+        showLoadingView()
+
+        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+            guard let self else { return }
+            self.dismissLoadingView()
+            switch result {
+            case .success(let follower):
+                let favourite = Follower(login: follower.login, avatarUrl: follower.avatarUrl)
+                PersistenceManager.update(favourite, actionType: .add) { [weak self] error in
+                    if let error {
+                        self?.presentAlert(
+                            title: "Something went wrong!",
+                            message: error.rawValue,
+                            buttonTitle: "OK"
+                        )
+                        return
+                    }
+                    self?.presentAlert(
+                        title: "Added to Favourites ⚝",
+                        message: "GitHub user - \(follower.name ?? "") with account \(follower.login ?? "") is added to Favourites List. Go in Favourites Section to modify.",
+                        buttonTitle: "OK"
+                    )
+                }
+            case .failure(let error):
+                self.presentAlert(
+                    title: "Something went wrong!",
+                    message: error.rawValue,
+                    buttonTitle: "OK"
+                )
+            }
         }
     }
 }
@@ -180,9 +230,25 @@ extension FollowersListViewController: UISearchBarDelegate {
 extension FollowersListViewController: UserInfoDelegate {
 
     func updateFollowers(for username: String?) {
+        // Both approaches work same (above & below)
+
+        // Approach 1
         guard let username else { return }
         title = username
         getFollowers(username: username, page: 1)
         followersCollectionView.reloadData()
+
+        // Approach 2
+        // guard let username else { return }
+        // self.username = username
+        // title = username
+        // page = 1
+        // followers.removeAll()
+        // filteredFollowers.removeAll()
+
+        // NOTE: to scroll upto the top real quick
+        // followersCollectionView.setContentOffset(.zero, animated: true)
+
+        // getFollowers(username: username, page: page)
     }
 }

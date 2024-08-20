@@ -147,7 +147,7 @@ extension UserInfoViewController: ItemInfoDelegate {
     }
 
     func didTapGetFollowers() {
-        dismiss(animated: true)
         delegate?.updateFollowers(for: follower.login)
+        dismissVC()
     }
 }

@@ -164,3 +164,17 @@ Answer: Advantages of using child VCs instead of views for UserInfo Screen:
 Common examples for SFSafariViewController: Privacy & Policy, Terms & Conditions, etc...
 
 ---------------------------------------------------------------------------------
+
+Communication Patterns:
+
+1. Protocols & Delegates - One to one
+2. Notifications & Observers - One to many
+3. Closures - One to One / Many to One
+4. Target-Action - One to One / One to Many
+5. Key-Value Observing (KVO) - One to One / One to Many
+6. Completion Handlers - One to One
+7. Dependency Injection - One to One
+8. Key-Value Coding (KVC) - One to One / One to Many
+9. Singleton Pattern - One to One / One to many
+
+---------------------------------------------------------------------------------

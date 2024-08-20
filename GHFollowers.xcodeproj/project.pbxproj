@@ -26,6 +26,7 @@
 		126AE91F2C721C3E001A8565 /* FollowerItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE91E2C721C3E001A8565 /* FollowerItemViewController.swift */; };
 		126AE9222C72354D001A8565 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9212C72354D001A8565 /* Date+Ext.swift */; };
 		126AE9242C723578001A8565 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9232C723578001A8565 /* String+Ext.swift */; };
+		126AE9262C73215E001A8565 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9252C73215E001A8565 /* PersistenceManager.swift */; };
 		12721BC42C66519900E56E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC32C66519900E56E53 /* AppDelegate.swift */; };
 		12721BC62C66519900E56E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC52C66519900E56E53 /* SceneDelegate.swift */; };
 		12721BC82C66519900E56E53 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC72C66519900E56E53 /* SearchViewController.swift */; };
@@ -85,6 +86,7 @@
 		126AE91E2C721C3E001A8565 /* FollowerItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerItemViewController.swift; sourceTree = "<group>"; };
 		126AE9212C72354D001A8565 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		126AE9232C723578001A8565 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
+		126AE9252C73215E001A8565 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		12721BC02C66519900E56E53 /* GHFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12721BC32C66519900E56E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12721BC52C66519900E56E53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				126AE8DB2C6B475B001A8565 /* NetworkManager.swift */,
+				126AE9252C73215E001A8565 /* PersistenceManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -476,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				126AE8DC2C6B475B001A8565 /* NetworkManager.swift in Sources */,
+				126AE9262C73215E001A8565 /* PersistenceManager.swift in Sources */,
 				12721C0F2C6A01EE00E56E53 /* GFBodyLabel.swift in Sources */,
 				126AE8EE2C6E0C1A001A8565 /* GFAvatarImageView.swift in Sources */,
 				12721C0D2C6A01DC00E56E53 /* GFTitleLabel.swift in Sources */,
