@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavouritesListViewController: UIViewController {
+class FavouritesListViewController: GFDataLoadingViewcontroller {
 
     private var favourites = [Follower]()
 
@@ -105,9 +105,9 @@ extension FavouritesListViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
 
         let selectedFavourite = favourites[indexPath.row]
-        let vc = FollowersListViewController()
-        vc.username = selectedFavourite.login
-        vc.title = selectedFavourite.login
+        guard let username = selectedFavourite.login else { return }
+        
+        let vc = FollowersListViewController(username: username)
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationController?.pushViewController(vc, animated: true)
     }

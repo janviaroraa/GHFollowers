@@ -13,7 +13,7 @@ class GFEmptyStateView: UIView {
     let messageLabel = GFTitleLabel(textAlignment: .center, fontSize: 28)
 
     private lazy var logoImageView: UIImageView = {
-        let imgV = UIImageView(image: UIImage(named: "empty-state-logo"))
+        let imgV = UIImageView(image: UIImage(named: SFSymbols.emptyState))
         imgV.translatesAutoresizingMaskIntoConstraints = false
         return imgV
     }()

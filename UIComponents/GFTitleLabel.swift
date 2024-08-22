@@ -9,13 +9,25 @@ import UIKit
 
 class GFTitleLabel: UILabel {
 
-    init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
-        super.init(frame: .zero)
+    // BEFORE
+    // init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+    //    super.init(frame: .zero)
+    //    self.textAlignment = textAlignment
+    //    self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+    //    configure()
+    //}
+
+    // In order ro avoid calling configure() in both inits, we can make our custom init (above one) a convenience init.
+    // convenience init always has to call designated init.
+
+    // AFTER
+    convenience init(textAlignment: NSTextAlignment, fontSize: CGFloat) {
+        self.init(frame: .zero)
         self.textAlignment = textAlignment
         self.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
-        configure()
     }
 
+    // Designated init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()

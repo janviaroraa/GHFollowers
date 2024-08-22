@@ -28,6 +28,8 @@
 		126AE9242C723578001A8565 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9232C723578001A8565 /* String+Ext.swift */; };
 		126AE9262C73215E001A8565 /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9252C73215E001A8565 /* PersistenceManager.swift */; };
 		126AE9402C74929B001A8565 /* FavouritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE93F2C74929B001A8565 /* FavouritesTableViewCell.swift */; };
+		126AE9732C75EEC8001A8565 /* GFDataLoadingViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9722C75EEC8001A8565 /* GFDataLoadingViewcontroller.swift */; };
+		126AE9752C772F13001A8565 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9742C772F13001A8565 /* UITableView+Ext.swift */; };
 		12721BC42C66519900E56E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC32C66519900E56E53 /* AppDelegate.swift */; };
 		12721BC62C66519900E56E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC52C66519900E56E53 /* SceneDelegate.swift */; };
 		12721BC82C66519900E56E53 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC72C66519900E56E53 /* SearchViewController.swift */; };
@@ -89,6 +91,8 @@
 		126AE9232C723578001A8565 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		126AE9252C73215E001A8565 /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		126AE93F2C74929B001A8565 /* FavouritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewCell.swift; sourceTree = "<group>"; };
+		126AE9722C75EEC8001A8565 /* GFDataLoadingViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFDataLoadingViewcontroller.swift; sourceTree = "<group>"; };
+		126AE9742C772F13001A8565 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
 		12721BC02C66519900E56E53 /* GHFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12721BC32C66519900E56E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12721BC52C66519900E56E53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 		126AE90D2C6F99DA001A8565 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				126AE9722C75EEC8001A8565 /* GFDataLoadingViewcontroller.swift */,
 				126AE8ED2C6E0C1A001A8565 /* GFAvatarImageView.swift */,
 				126AE90B2C6F9980001A8565 /* GFEmptyStateView.swift */,
 				126AE9182C720DF8001A8565 /* GFItemInfoView.swift */,
@@ -329,6 +334,7 @@
 				12721C132C6A39E700E56E53 /* UIViewController+Ext.swift */,
 				126AE9212C72354D001A8565 /* Date+Ext.swift */,
 				126AE9232C723578001A8565 /* String+Ext.swift */,
+				126AE9742C772F13001A8565 /* UITableView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -506,6 +512,7 @@
 				126AE9242C723578001A8565 /* String+Ext.swift in Sources */,
 				126AE8CE2C6B30AA001A8565 /* Follower.swift in Sources */,
 				12721C032C69E05100E56E53 /* GFButton.swift in Sources */,
+				126AE9752C772F13001A8565 /* UITableView+Ext.swift in Sources */,
 				126AE8EC2C6E0B0F001A8565 /* FollowersCollectionViewCell.swift in Sources */,
 				126AE8EA2C6DDC1F001A8565 /* GFError.swift in Sources */,
 				126AE9192C720DF8001A8565 /* GFItemInfoView.swift in Sources */,
@@ -515,6 +522,7 @@
 				126AE8D02C6B3188001A8565 /* User.swift in Sources */,
 				12721C002C68B43700E56E53 /* GFTabBarController.swift in Sources */,
 				126AE8CB2C6B2AC4001A8565 /* SearchViewModal.swift in Sources */,
+				126AE9732C75EEC8001A8565 /* GFDataLoadingViewcontroller.swift in Sources */,
 				12721BC62C66519900E56E53 /* SceneDelegate.swift in Sources */,
 				126AE9142C71F77B001A8565 /* HeaderViewController.swift in Sources */,
 			);

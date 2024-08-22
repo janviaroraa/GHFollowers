@@ -30,8 +30,8 @@ class GFTabBarController: UITabBarController {
         let nav1 = UINavigationController(rootViewController: searchVC)
         let nav2 = UINavigationController(rootViewController: favouritesVC)
 
-        nav1.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: Constants.Tabs.search), tag: 1)
-        nav2.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: Constants.Tabs.favourites), tag: 2)
+        nav1.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: Tabs.search), tag: 1)
+        nav2.tabBarItem = UITabBarItem(title: "Favourites", image: UIImage(systemName: Tabs.favourites), tag: 2)
 
         for nav in [nav1, nav2] {
             nav.navigationBar.prefersLargeTitles = true

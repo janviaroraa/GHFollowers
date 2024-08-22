@@ -7,17 +7,18 @@
 
 import UIKit
 
-class FollowersListViewController: UIViewController {
+class FollowersListViewController: GFDataLoadingViewcontroller {
 
     // Enums are Hashable by default
     enum Section {
         case main
     }
     
-    var username: String? = nil
+    var username: String
     private var page = 1
     private var hasMoreFollowers = true
     private var isSearching = false
+    private var isLoadingMoreFollowers = false
 
     private var followers = [Follower]()
     private var filteredFollowers = [Follower]()
@@ -31,12 +32,22 @@ class FollowersListViewController: UIViewController {
         return cv
     }()
 
+    init(username: String) {
+        self.username = username
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        title = username
         configureSearchBar()
         configureNavBar()
-        getFollowers(username: username ?? "", page: page)
+        getFollowers(username: username, page: page)
         configureDataSource()
     }
 
@@ -82,7 +93,8 @@ class FollowersListViewController: UIViewController {
 
     private func getFollowers(username: String, page: Int) {
         showLoadingView()
-        
+        isLoadingMoreFollowers = true
+
         NetworkManager.shared.getFollowers(for: username, pageNumber: page) { [weak self] result in
             self?.dismissLoadingView()
             switch result {
@@ -107,6 +119,7 @@ class FollowersListViewController: UIViewController {
                     buttonTitle: "OK"
                 )
             }
+            self?.isLoadingMoreFollowers = false
         }
     }
 
@@ -130,15 +143,6 @@ class FollowersListViewController: UIViewController {
 
     @objc
     private func addButtonTapped() {
-        guard let username else {
-            presentAlert(
-                title: "Something went wrong!",
-                message: "There's some trouble accessing this github account. Please try again.",
-                buttonTitle: "OK"
-            )
-            return
-        }
-
         showLoadingView()
 
         NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
@@ -189,7 +193,7 @@ extension FollowersListViewController: UICollectionViewDelegate {
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        guard let username, hasMoreFollowers else { return }
+        guard hasMoreFollowers, !isLoadingMoreFollowers else { return }
 
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -207,6 +211,8 @@ extension FollowersListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text,
               !searchText.isEmpty else {
+            isSearching = false
+            filteredFollowers.removeAll()
             updateData(with: followers)
             return
         }
@@ -223,14 +229,14 @@ extension FollowersListViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         isSearching = false
         updateData(with: followers)
-        followersCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+        followersCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
     }
 }
 
 extension FollowersListViewController: UserInfoDelegate {
 
     func updateFollowers(for username: String?) {
-        // Both approaches work same (above & below)
+        // Both approaches work same
 
         // Approach 1
         guard let username else { return }

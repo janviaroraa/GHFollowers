@@ -178,3 +178,42 @@ Communication Patterns:
 9. Singleton Pattern - One to One / One to many
 
 ---------------------------------------------------------------------------------
+
+If you want that something should not be initialized empty, then mark it as enum.
+
+Example:
+
+struct ABC {
+    static func f1() {
+        // code
+    }
+}
+
+let demo1 = ABC()
+let demo2 = ABC.f1()
+
+Now, both demo1 & demo2 can be created, but if we want that this should not happen & developer may not be able to initialize that empty, then use enums.
+
+Re-factorization of above code:
+
+enum ABC {
+    static func f1() {
+        // code
+    }
+}
+
+let demo3 = ABC.f1()
+
+---------------------------------------------------------------------------------
+
+Variadic Parameters:
+
+func addSubviews(_ views: UIView...) {
+    for view in views {
+        addSubview(view)
+    }
+}
+
+In above func, UIView... are called variadic parameters. It means we can pass any number of views into our func addSubviews. Variadic parameters will turn whatever views you enter into an array, and we can loop over it.
+
+---------------------------------------------------------------------------------

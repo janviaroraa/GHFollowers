@@ -37,7 +37,7 @@ class HeaderViewController: UIViewController {
 
     private func configureUIElements() {
         locationImageView.translatesAutoresizingMaskIntoConstraints = false
-        locationImageView.image = UIImage(systemName: Constants.SFSymbols.location)
+        locationImageView.image = UIImage(systemName: SFSymbols.location)
         locationImageView.tintColor = .secondaryLabel
 
         avatarImageView.downloadImage(from: user.avatarUrl)

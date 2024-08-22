@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     }
 
     private lazy var logoImageView: UIImageView = {
-        let imgV = UIImageView(image: UIImage(named: "gh-logo"))
+        let imgV = UIImageView(image: UIImage(named: SFSymbols.logo))
         imgV.translatesAutoresizingMaskIntoConstraints = false
         imgV.contentMode = .scaleAspectFit
         return imgV
@@ -39,6 +39,7 @@ class SearchViewController: UIViewController {
     // Earlier, isNavigationBarHidden was used but then it was found that during transition from SearchVC to FollowersListVC and navigating back half way disappears the nav bar (attached an image in assets for reference). So, make the navigation transition smoother we use setNavigationBarHidden func.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        usernameTextField.text = ""
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
@@ -47,9 +48,11 @@ class SearchViewController: UIViewController {
     }
 
     private func layoutConstraints() {
+        var logoImageViewTopConstraint: CGFloat = (DeviceTypes.isIphoneSE || DeviceTypes.isIphone8Zoomed) ? 20 : 80
+
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
+            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: logoImageViewTopConstraint),
             logoImageView.widthAnchor.constraint(equalToConstant: 200),
             logoImageView.heightAnchor.constraint(equalToConstant: 200),
 
@@ -77,7 +80,7 @@ class SearchViewController: UIViewController {
 
     @objc
     private func navigateToFollowersVC() {
-        guard !isUsernameEmpty else {
+        guard !isUsernameEmpty, let username = usernameTextField.text else {
             presentAlert(
                 title: "Empty Username!",
                 message: "Please enter a username. We need to know whose followers to look for.",
@@ -85,9 +88,17 @@ class SearchViewController: UIViewController {
             )
             return
         }
-        let vc = FollowersListViewController()
-        vc.username = usernameTextField.text
-        vc.title = usernameTextField.text
+
+        // To resolve the bug while navigating to next screen & navigating back. Can be reproduced on real device.
+        // (SS can be found in Resources > Assets > NavigationBug)
+
+        // Soln. 1
+        usernameTextField.resignFirstResponder()
+
+        // Soln. 2
+        // view.endEditing(true)
+
+        let vc = FollowersListViewController(username: username)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

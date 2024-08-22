@@ -39,5 +39,8 @@ class GFTextField: UITextField {
         autocorrectionType = .no
         keyboardType = .default
         returnKeyType = .go
+
+        // To get a little cross button while typing
+        clearButtonMode = .whileEditing
     }
 }

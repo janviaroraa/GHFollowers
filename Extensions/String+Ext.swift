@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Not required now, since we nade `createdAt` property of `User` of type `Date`
 extension String {
 
     // https://www.nsdateformatter.com/

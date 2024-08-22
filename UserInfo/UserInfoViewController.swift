@@ -16,6 +16,9 @@ class UserInfoViewController: UIViewController {
     private var follower: Follower
     weak var delegate: UserInfoDelegate?
 
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+
     private let headerView = UIView()
     private let item1View = UIView()
     private let item2View = UIView()
@@ -55,7 +58,9 @@ class UserInfoViewController: UIViewController {
         item2View.layer.cornerRadius = 18
         item2View.backgroundColor = .secondarySystemBackground
 
-        view.addSubviews(headerView, item1View, item2View, dateLabel)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubviews(headerView, item1View, item2View, dateLabel)
     }
 
     private func layoutConstraints() {
@@ -64,13 +69,19 @@ class UserInfoViewController: UIViewController {
 
         for item in items {
             NSLayoutConstraint.activate([
-                item.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
-                item.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
+                item.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
+                item.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding),
             ])
         }
 
+        scrollView.pinToEdges(of: view)
+        contentView.pinToEdges(of: scrollView)
+
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalToConstant: 600),
+
+            headerView.topAnchor.constraint(equalTo: contentView.topAnchor),
             headerView.heightAnchor.constraint(equalToConstant: 180),
 
             item1View.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: padding),
@@ -111,17 +122,11 @@ class UserInfoViewController: UIViewController {
 
     private func configure(with user: User) {
         self.add(HeaderViewController(user: user), to: self.headerView)
-
-        let repoVC = RepoItemViewController(user: user)
-        repoVC.delegate = self
-        self.add(repoVC, to: self.item1View)
-
-        let followerVC = FollowerItemViewController(user: user)
-        followerVC.delegate = self
-        self.add(followerVC, to: self.item2View)
+        self.add(RepoItemViewController(user: user, delegate: self), to: self.item1View)
+        self.add(FollowerItemViewController(user: user, delegate: self), to: self.item2View)
 
         if let creationDate = user.createdAt {
-            self.dateLabel.text = "GitHub since \(creationDate.convertToDisplayFormat())"
+            self.dateLabel.text = "GitHub since \(creationDate.convertToMonthYearFormat())"
         }
     }
 
@@ -131,7 +136,7 @@ class UserInfoViewController: UIViewController {
     }
 }
 
-extension UserInfoViewController: ItemInfoDelegate {
+extension UserInfoViewController: RepoItemDelegate {
 
     func didTapProfile(_ user: String?) {
         guard let user, let url = URL(string: user) else {
@@ -145,6 +150,9 @@ extension UserInfoViewController: ItemInfoDelegate {
 
         presentSafariViewController(url: url)
     }
+}
+
+extension UserInfoViewController: FollowerItemDelegate {
 
     func didTapGetFollowers() {
         delegate?.updateFollowers(for: follower.login)

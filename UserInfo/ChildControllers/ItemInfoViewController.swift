@@ -7,15 +7,9 @@
 
 import UIKit
 
-protocol ItemInfoDelegate: AnyObject {
-    func didTapProfile(_ user: String?)
-    func didTapGetFollowers()
-}
-
 class ItemInfoViewController: UIViewController {
 
     var user: User
-    weak var delegate: ItemInfoDelegate?
 
     let stackView = UIStackView()
     let itemInfoView1 = GFItemInfoView()
