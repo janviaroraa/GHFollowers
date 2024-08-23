@@ -52,3 +52,10 @@ struct DeviceTypes {
         return isIphoneX || isIphoneXsMaxAndXr
     }
 }
+
+// iOS 17.0
+enum Images {
+    static let logo = UIImage(resource: .ghLogo)
+    static let avatarLogo = UIImage(resource: .avatarPlaceholder)
+    static let emptyState = UIImage(resource: .emptyStateLogo)
+}

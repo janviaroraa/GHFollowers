@@ -33,6 +33,19 @@ class FavouritesListViewController: GFDataLoadingViewcontroller {
         getFavourites()
     }
 
+    @available(iOS 17.0, *)
+    override func updateContentUnavailableConfiguration(using state: UIContentUnavailableConfigurationState) {
+        if favourites.isEmpty {
+            var config = UIContentUnavailableConfiguration.empty()
+            config.image = UIImage(systemName: "star")
+            config.text = "No favourites"
+            config.secondaryText = "Add a favourite on the Followers List screen"
+            contentUnavailableConfiguration = config
+        } else {
+            contentUnavailableConfiguration = nil
+        }
+    }
+
     private func addViews() {
         view.addSubviews(favouritesTableview)
     }
@@ -47,11 +60,8 @@ class FavouritesListViewController: GFDataLoadingViewcontroller {
 
             switch result {
             case .success(let favourites):
-                if favourites.isEmpty {
-                    self.showEmptyState(with: "No Favourites? \n Add one on the follower screen.", in: self.view)
-                    return
-                }
                 self.favourites = favourites
+                setNeedsUpdateContentUnavailableConfiguration()
                 DispatchQueue.main.async {
                     self.favouritesTableview.reloadData()
 
@@ -86,11 +96,8 @@ extension FavouritesListViewController: UITableViewDataSource {
         let selectedFavourite = favourites[indexPath.row]
         favourites.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
-
-        if favourites.isEmpty {
-            showEmptyState(with: "No Favourites? \n Add one on the follower screen.", in: self.view)
-        }
-
+        setNeedsUpdateContentUnavailableConfiguration()
+        
         PersistenceManager.update(selectedFavourite, actionType: .remove) { [weak self] error in
             if let error {
                 self?.presentAlert(
