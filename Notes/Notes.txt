@@ -217,3 +217,79 @@ func addSubviews(_ views: UIView...) {
 In above func, UIView... are called variadic parameters. It means we can pass any number of views into our func addSubviews. Variadic parameters will turn whatever views you enter into an array, and we can loop over it.
 
 ---------------------------------------------------------------------------------
+
+New iOS 15.0 changes: (Cases/Problems handles handled in iOS 15:)
+
+1. You have to make sure to call completion with success or failure, but let's say in some case you forgot to call it, then our app would hang, because where we might have done our function call, it must have been expecting a completion.
+
+2. All the escaping closures runs on background thread, so we have to make sure to make our UI changes on main thread, otherwise either we'll get frozen UI or no UI changes will be reflected.
+
+
+Use case:
+
+Before:
+func getFollowers(for username: String, pageNumber: Int, completion: @escaping (Result<[Follower], GFError>) -> Void)
+
+After:
+func getFollowers(for username: String, pageNumber: Int) async throws -> [Follower]
+
+1. No completion handler required
+2. Now in order to make it utilize the new async await, we have to make our func `async`
+3. To handle the errors, we have to use the `throws` keyword
+4. The moment we write throws, so it'll automatically give us error in case we don't throw an error or a Follower array. So, in no case we can have a situation where we forget to properly handle an exit. It's kinda catchall.
+5. We don't have to use the `return` keyword while using guard statement because there we can directly throw the error.
+6. URLSession got a new awaitable method:
+   URLSession.shared.data(from: URL)
+   This retrieves the contents of URL and delivers the data asynchronously.
+   This returns a tuple of data and response & it's not optional.
+7. (data, response, error) were optional in normal case, but (data, response) tuple is not optional when we use async await network calls.
+8. No need of using capture list or switching back to main thread, because this gets abstracted away into the system itself, so don't have to worry about those errors anymore.
+
+9. If we try to use the async-await func `getFollowers` directly, then we'll get the below compile-time error:
+    'async' call in a function that does not support concurrency
+
+    Solution 1:
+    Marking the func in which `getFollowers1` gets called as async
+
+    Solution 2:
+    Enclosing the function call in a Task block. This will put our code in a concurrency context.
+
+---------------------------------------------------------------------------------
+
+All the UI components are marked as @MainActor. So, you are updating something on UI that's marked as @MainActor, it automatically routes it to the main thread for you.
+This is how it handles the routing to main thread automatically in our network calls without us worrying about it.
+
+e.g.
+@MainActor class UIViewController: UIResponder
+
+This is new in Swift 5.5
+
+---------------------------------------------------------------------------------
+
+Structured vs Unstructured Concurrency:
+The order in which things happen.
+
+---------------------------------------------------------------------------------
+
+Unstructured Concurrency:
+
+STEP 1: NetworkManager.shared.getFollowers(for: "janviaroraa", pageNumber: 1) { [weak  self] result in
+
+                // STEP 2
+                guard let self else { return }
+                // code
+STEP 2: }
+
+Order of execution for above non async-await func: 1 3 2
+i.e.
+It goes to step 1, then it exits the block by going to step 3 because it's an escaping func, then maybe a nano-sec later, it goes to step 2, inside the block.
+
+---------------------------------------------------------------------------------
+
+Structured Concurrency:
+
+In async-await network calls, code just reads top-to-bottom, i.e. it goes in a structured manner. So, you don't have to hop around finding the order od execution.
+
+UpdatedNetworkManager.shared.getFollowers(for: "janviaroraa", pageNumber: 1)
+
+---------------------------------------------------------------------------------

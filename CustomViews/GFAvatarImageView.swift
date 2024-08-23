@@ -53,4 +53,11 @@ class GFAvatarImageView: UIImageView {
             }
         }.resume()
     }
+
+    // Updated download func with async-await functionality
+    func downloadImage(from urlString: String) {
+        Task {
+            image = await UpdatedNetworkManager.shared.downloadImage(from: urlString) ?? placeholderImage
+        }
+    }
 }

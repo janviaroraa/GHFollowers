@@ -114,3 +114,110 @@ class NetworkManager {
         }.resume()
     }
 }
+
+// Refactored Code (iOS 15.0)
+class UpdatedNetworkManager {
+
+    static let shared = UpdatedNetworkManager()
+
+    private let baseURL = "https://api.github.com/users/"
+    private let perPageFollowersCount = 99
+    var cache = NSCache<NSString, UIImage>()
+    private let decoder = JSONDecoder()
+
+    private init() {
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
+    }
+
+    func getFollowers(for username: String, pageNumber: Int) async throws -> [Follower] {
+        let endpoint = baseURL + "\(username)/followers?per_page=\(perPageFollowersCount)&page=\(pageNumber)"
+
+        guard let url = URL(string: endpoint) else {
+            throw GFError.invalidUsername
+        }
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw GFError.invalidResponse
+        }
+
+        do {
+            let followers = try decoder.decode([Follower].self, from: data)
+            return followers
+        } catch {
+            throw GFError.parsingError
+        }
+    }
+
+    func getUserInfo(for username: String) async throws -> User {
+        let endpoint = baseURL + "\(username)"
+        guard let url = URL(string: endpoint) else { throw GFError.invalidUsername }
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else { throw GFError.invalidResponse }
+
+        do {
+            return try decoder.decode(User.self, from: data)
+        } catch {
+            throw GFError.parsingError
+        }
+    }
+
+    // We are not marking it throws because w edon't care about errors here, if the network call fails, we'll just show the placeholder image
+    func downloadImage(from urlString: String) async -> UIImage? {
+        let cacheKey = NSString(string: urlString)
+
+        if let image = cache.object(forKey: cacheKey) {
+            return image
+        }
+
+        guard let url = URL(string: urlString) else { return nil }
+
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let image = UIImage(data: data) else { return nil }
+            cache.setObject(image, forKey: cacheKey)
+            return image
+        } catch {
+            return nil
+        }
+    }
+}
+
+// Usage
+class Random: UIViewController {
+
+    func getFollowers() {
+
+        // Approach 1
+        Task {
+            do {
+                let followers = try await UpdatedNetworkManager.shared.getFollowers(for: "janviaroraa", pageNumber: 1)
+                print(followers)
+            } catch {
+                // handle errors
+                // We can get 2 types of errors here: GFError & Error
+                // GFError: from guard statements
+                // Error: from - try await URLSession.shared.data(from: url)
+
+                if let gfError = error as? GFError {
+                    // We don't have to go on main thread now
+                    presentAlert(title: "", message: gfError.rawValue, buttonTitle: "")
+                } else {
+                    // Or make some default error alert
+                    print(error.localizedDescription)
+                }
+            }
+        }
+
+        // Approach 2
+        Task {
+            guard let followers = try? await UpdatedNetworkManager.shared.getFollowers(for: "janviaroraa", pageNumber: 1) else {
+                presentAlert(title: "", message: "", buttonTitle: "")
+                return
+            }
+            print(followers)
+        }
+    }
+}
