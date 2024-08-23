@@ -87,6 +87,10 @@ extension FavouritesListViewController: UITableViewDataSource {
         favourites.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
 
+        if favourites.isEmpty {
+            showEmptyState(with: "No Favourites? \n Add one on the follower screen.", in: self.view)
+        }
+
         PersistenceManager.update(selectedFavourite, actionType: .remove) { [weak self] error in
             if let error {
                 self?.presentAlert(

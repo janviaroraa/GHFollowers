@@ -241,6 +241,7 @@ extension FollowersListViewController: UserInfoDelegate {
         // Approach 1
         guard let username else { return }
         title = username
+        self.username = username
         getFollowers(username: username, page: 1)
         followersCollectionView.reloadData()
 

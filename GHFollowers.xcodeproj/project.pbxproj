@@ -30,6 +30,7 @@
 		126AE9402C74929B001A8565 /* FavouritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE93F2C74929B001A8565 /* FavouritesTableViewCell.swift */; };
 		126AE9732C75EEC8001A8565 /* GFDataLoadingViewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9722C75EEC8001A8565 /* GFDataLoadingViewcontroller.swift */; };
 		126AE9752C772F13001A8565 /* UITableView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE9742C772F13001A8565 /* UITableView+Ext.swift */; };
+		126AE97C2C7871B3001A8565 /* FollowerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126AE97B2C7871B3001A8565 /* FollowerView.swift */; };
 		12721BC42C66519900E56E53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC32C66519900E56E53 /* AppDelegate.swift */; };
 		12721BC62C66519900E56E53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC52C66519900E56E53 /* SceneDelegate.swift */; };
 		12721BC82C66519900E56E53 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12721BC72C66519900E56E53 /* SearchViewController.swift */; };
@@ -93,6 +94,7 @@
 		126AE93F2C74929B001A8565 /* FavouritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesTableViewCell.swift; sourceTree = "<group>"; };
 		126AE9722C75EEC8001A8565 /* GFDataLoadingViewcontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GFDataLoadingViewcontroller.swift; sourceTree = "<group>"; };
 		126AE9742C772F13001A8565 /* UITableView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ext.swift"; sourceTree = "<group>"; };
+		126AE97B2C7871B3001A8565 /* FollowerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerView.swift; sourceTree = "<group>"; };
 		12721BC02C66519900E56E53 /* GHFollowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHFollowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12721BC32C66519900E56E53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12721BC52C66519900E56E53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -208,6 +210,14 @@
 				126AE91E2C721C3E001A8565 /* FollowerItemViewController.swift */,
 			);
 			path = SupportingViewControllers;
+			sourceTree = "<group>";
+		};
+		126AE9762C787107001A8565 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				126AE97B2C7871B3001A8565 /* FollowerView.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		12721BB72C66519900E56E53 = {
@@ -345,6 +355,7 @@
 				126AE8CD2C6B30AA001A8565 /* Follower.swift */,
 				12721C0A2C69F49C00E56E53 /* FollowersListViewController.swift */,
 				126AE8EB2C6E0B0F001A8565 /* FollowersCollectionViewCell.swift */,
+				126AE9762C787107001A8565 /* SwiftUI */,
 			);
 			path = Followers;
 			sourceTree = "<group>";
@@ -520,6 +531,7 @@
 				12721C122C6A03F200E56E53 /* GFAlertViewController.swift in Sources */,
 				12721C052C69E6B800E56E53 /* GFTextField.swift in Sources */,
 				126AE8D02C6B3188001A8565 /* User.swift in Sources */,
+				126AE97C2C7871B3001A8565 /* FollowerView.swift in Sources */,
 				12721C002C68B43700E56E53 /* GFTabBarController.swift in Sources */,
 				126AE8CB2C6B2AC4001A8565 /* SearchViewModal.swift in Sources */,
 				126AE9732C75EEC8001A8565 /* GFDataLoadingViewcontroller.swift in Sources */,
